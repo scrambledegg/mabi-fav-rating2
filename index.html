@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>好感度ちぇっかーつー</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- Content -->
+    <div class="container">
+      <!-- Header -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">好感度ちぇっかーつー</h1>
+        </div>
+      </div>
+      <!-- /.row -->
+      <!-- checkboxes -->
+      <section>
+        <!-- charactor row 1 -->
+        <div class="row">
+          <!-- charactor col 1-->
+          <div class="col-xs-6">
+            <div id="dai-table"></div>
+          </div>
+          <!-- /charactor col 1-->
+          <!-- charactor col 2-->
+          <div class="col-xs-6">
+            <div id="eyrlys-table"></div>
+          </div>
+          <!-- /charactor col 2-->
+        </div>
+        <!-- /.row -->
+        <!-- charactor row 2 -->
+        <div class="row" style="margin-top:10px">
+          <!-- charactor col 1-->
+          <div class="col-xs-6">
+            <div id="elsie-table"></div>
+          </div>
+          <!-- /charactor col 1-->
+          <!-- charactor col 2-->
+          <div class="col-xs-6">
+            <div id="kaoru-table"></div>
+          </div>
+          <!-- /charactor col 2-->
+        </div>
+        <!-- /charactor row 2 -->
+      </section>
+
+      <hr>
+    </div>
+    <!-- /.container -->
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script id="template" type="text/ractive">
+      <div class="row">
+        <div class="col-xs-6">
+        <img class="img-responsive" src="img/{{character}}.jpg" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table">
+            <tbody>
+              <tr>
+              <th>#</th>
+              <th>任</th>
+              <th>訓</th>
+              <th>遊</th>
+              <th>料</th>
+              <th>フ</th>
+              <th>恋</th>
+              </tr>
+              {{#[0,1,2]:offset}}
+                <tr>
+                <td>{{normalize_index(index+parseInt(offset))+1}}</td>
+              {{#[0,1,2,3,4,5]:tdnum}}
+                <td>
+                  {{#if get_fav(index + offset)[tdnum]  == -1}} <span class="glyphicon glyphicon-remove"></span>
+                  {{elseif get_fav(index + offset)[tdnum] == 1}} <span class="text-danger glyphicon glyphicon-heart"></span>
+                {{else}}{{/if}}
+                </td>
+              {{/}}
+              </tr>
+              {{/}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button on-click='-3'class="btn btn-primary">-3</button>
+          <button on-click='-1'class="btn btn-primary">-1</button>
+          <button on-click='+1' class="btn btn-default">+1</button>
+          <button on-click='+3' class="btn btn-default">+3</button>
+        </div>
+      </div>
+    </script>
+  </body>
+</html>
