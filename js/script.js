@@ -104,6 +104,21 @@ function get_default_index(name) {
 }
 
 $(function(){
+//   // initialize modal
+//   var modal_ractive = new Ractive({
+//     el: "#fav-complete-table",
+//     template: "#fav-complete-table-template",
+//     data: {
+//       index: 0,
+//       character: CHARACTERS[0],
+//       table: FAV_TABLES[0],
+//       normalize_index: function(num){
+//         return normalize_index(this.get().character, num);
+//       },
+//     }
+//   });
+//
+  // initialize_table
   function create_table(name, index) {
     var ractive = new Ractive({
       el: "#"+name+"-table",
@@ -111,6 +126,7 @@ $(function(){
       data: {
         character: name,
         index: index,
+        table: FAV_TABLES[name],
         normalize_index: function(num){
           return normalize_index(this.get().character, num);
         },
@@ -141,8 +157,16 @@ $(function(){
       $.cookie(ractive.get().character+"-index", idx, {expires: 30})
       ractive.set('index', idx);
     });
+    ractive.on('show-complete-fav-table', function(event){
+      var character = ractive.get().character
+      var idx = normalize_index(character, ractive.get().index);
+      ractive.set('index', idx);
+      ractive.set('character', character);
+      ractive.set('table', FAV_TABLES[character]);
+    });
   }
   for (var i=0; i < CHARACTERS.length; i++) {
-    create_table(CHARACTERS[i], get_default_index(CHARACTERS[i]))
+    create_table(CHARACTERS[i], get_default_index(CHARACTERS[i]));
   }
+
 });

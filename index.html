@@ -50,7 +50,6 @@
         </div>
         <!-- /charactor row 2 -->
       </section>
-
       <hr>
     </div>
     <!-- /.container -->
@@ -63,7 +62,7 @@
     <script id="template" type="text/ractive">
       <div class="row">
         <div class="col-xs-6">
-        <img class="img-responsive" src="img/{{character}}.jpg" alt="">
+          <img class="img-responsive" src="img/{{character}}.jpg" alt="">
         </div>
       </div>
       <div class="row">
@@ -97,12 +96,71 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button on-click='-3'class="btn btn-primary">-3</button>
-          <button on-click='-1'class="btn btn-primary">-1</button>
-          <button on-click='+1' class="btn btn-default">+1</button>
-          <button on-click='+3' class="btn btn-default">+3</button>
+          <div class="row">
+            <div class="col-xs-8">
+              <button on-click='-3'class="btn btn-primary">-3</button>
+              <button on-click='-1'class="btn btn-primary">-1</button>
+              <button on-click='+1' class="btn btn-default">+1</button>
+              <button on-click='+3' class="btn btn-default">+3</button>
+            </div>
+            <div class="text-right col-xs-4">
+              <button on-click='show-complete-fav-table' class="btn btn-default" data-toggle="modal" data-target="#{{character}}-table-modal">more</button>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- modal dialog -->
+      <div class="modal fade" id="{{character}}-table-modal" tabindex="-1" role="dialog" aria-labelledby="{{character}}-table-modal-label">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="{{character}}-table-modal-label">好感度てーぶる</h4>
+            </div>
+            <div id="fav-complete-table" class="modal-body">
+              <div class="row">
+                <div class="col-xs-12">
+                  <button on-click='-3'class="btn btn-primary">-3</button>
+                  <button on-click='-1'class="btn btn-primary">-1</button>
+                  <button on-click='+1' class="btn btn-default">+1</button>
+                  <button on-click='+3' class="btn btn-default">+3</button>
+                </div>
+              </div>
+              <table class="table table-bordered" style="margin-top:10px">
+                <tbody>
+                  <tr>
+                  <th>#</th>
+                  <th>任務</th>
+                  <th>訓練</th>
+                  <th>遊び</th>
+                  <th>料理</th>
+                  <th>ファッション</th>
+                  <th>恋愛</th>
+                  </tr>
+                  {{#table:offset}}
+                  <tr {{#if 5 <= offset && offset < 8}} class="info"{{/if}}>
+                    <td>{{normalize_index(index+offset - 5)+1}}</td>
+                  {{#table[normalize_index(index+offset - 5)]:tdnum}}
+                    <td>
+                      {{#if .  == -1}} <span class="glyphicon glyphicon-remove"></span>
+                      {{elseif . == 1}} <span class="text-danger glyphicon glyphicon-heart"></span>
+                    {{else}}{{/if}}
+                    </td>
+                  {{/}}
+                  </tr>
+                  {{/}}
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /modal dialog -->
+    </script>
+    <script id="fav-complete-table-template" type="text/ractive">
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
