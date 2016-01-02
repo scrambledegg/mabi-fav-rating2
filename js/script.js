@@ -104,20 +104,6 @@ function get_default_index(name) {
 }
 
 $(function(){
-//   // initialize modal
-//   var modal_ractive = new Ractive({
-//     el: "#fav-complete-table",
-//     template: "#fav-complete-table-template",
-//     data: {
-//       index: 0,
-//       character: CHARACTERS[0],
-//       table: FAV_TABLES[0],
-//       normalize_index: function(num){
-//         return normalize_index(this.get().character, num);
-//       },
-//     }
-//   });
-//
   // initialize_table
   function create_table(name, index) {
     var ractive = new Ractive({
