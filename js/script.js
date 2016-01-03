@@ -100,8 +100,6 @@ function normalize_index(character_name, index) {
 function get_default_index(name) {
   if (localStorage.getItem(name+"-index"))
     return parseInt(localStorage.getItem(name+"-index"))
-  if ($.cookie(name+"-index"))
-    return parseInt($.cookie(name+"-index"))
   return 0;
 }
 
@@ -128,25 +126,21 @@ $(function(){
     ractive.on('-3', function(event){
       var idx = normalize_index(ractive.get().character, ractive.get().index - 3);
       localStorage.setItem(ractive.get().character+"-index", idx)
-      $.cookie(ractive.get().character+"-index", idx, {expires: 30})
       ractive.set('index', idx);
     });
     ractive.on('-1', function(event){
       var idx = normalize_index(ractive.get().character, ractive.get().index - 1);
       localStorage.setItem(ractive.get().character+"-index", idx)
-      $.cookie(ractive.get().character+"-index", idx, {expires: 30})
       ractive.set('index', idx);
     });
     ractive.on('+1', function(event){
       var idx = normalize_index(ractive.get().character, ractive.get().index + 1);
       localStorage.setItem(ractive.get().character+"-index", idx)
-      $.cookie(ractive.get().character+"-index", idx, {expires: 30})
       ractive.set('index', idx);
     });
     ractive.on('+3', function(event){
       var idx = normalize_index(ractive.get().character, ractive.get().index + 3);
       localStorage.setItem(ractive.get().character+"-index", idx)
-      $.cookie(ractive.get().character+"-index", idx, {expires: 30})
       ractive.set('index', idx);
     });
     ractive.on('show-complete-fav-table', function(event){
@@ -157,8 +151,17 @@ $(function(){
       ractive.set('table', FAV_TABLES[character]);
     });
   }
+  // copy cookie -> localStorage
+  for (var i=0; i < CHARACTERS.length; i++) {
+    var name = CHARACTERS[i]
+    if (!localStorage.getItem(name+"-index")) {
+      if ($.cookie(name+"-index"))
+        localStorage.setItem(name+"-index", $.cookie(name+"-index"))
+    }
+  }
   for (var i=0; i < CHARACTERS.length; i++) {
     create_table(CHARACTERS[i], get_default_index(CHARACTERS[i]));
   }
+
 
 });
