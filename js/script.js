@@ -151,14 +151,6 @@ $(function(){
       ractive.set('table', FAV_TABLES[character]);
     });
   }
-  // copy cookie -> localStorage
-  for (var i=0; i < CHARACTERS.length; i++) {
-    var name = CHARACTERS[i]
-    if (!localStorage.getItem(name+"-index")) {
-      if ($.cookie(name+"-index"))
-        localStorage.setItem(name+"-index", $.cookie(name+"-index"))
-    }
-  }
   for (var i=0; i < CHARACTERS.length; i++) {
     create_table(CHARACTERS[i], get_default_index(CHARACTERS[i]));
   }
