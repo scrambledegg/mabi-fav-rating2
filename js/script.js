@@ -146,9 +146,9 @@ $(function(){
     ractive.on('show-complete-fav-table', function(event){
       var character = ractive.get().character
       var idx = normalize_index(character, ractive.get().index);
-      ractive.set('index', idx);
-      ractive.set('character', character);
-      ractive.set('table', FAV_TABLES[character]);
+      ractive.set({'index': idx,
+                   'character': character,
+                   'table': FAV_TABLES[character]});
     });
   }
   for (var i=0; i < CHARACTERS.length; i++) {
