@@ -8,11 +8,32 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css" rel="stylesheet">
+    <style>
+      html, body {
+        width:100%;
+        height:100%;
+        padding:0;
+        margin:0;
+        overflow-x:hidden;
+      }
+      .vertical-center{
+        position: relative;
+        top: 50%;
+      }
+      .box {
+        z-index:-100;
+        position: fixed;
+        width: 100%;
+        height: 80%;
+      }
+    </style>
   </head>
 
   <body>
     <!-- Content -->
-    <div class="container">
+    <div class="container"
+      data-0="opacity:1.0;transform:scale(1) rotate(0deg)"
+      data-1000="opacity:0.0;transform:scale(0.1) rotate(-360deg)">
       <!-- Header -->
       <div class="row">
         <div class="col-lg-12">
@@ -54,11 +75,94 @@
       <hr>
     </div>
     <!-- /.container -->
-
+    <section class="box text-center"
+      data-1500="top:0%;opacity:0.0;"
+      data-2000="opacity:1.0;"
+      data-3000="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>聞...すか?</h1>
+      </div>
+    </section>
+    <section class="box text-center"
+      data-3500="top:0%;opacity:0.0;"
+      data-4000="opacity:1.0;"
+      data-4500="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>聞こえますか...</h1>
+      </div>
+    </section>
+    <section class="box text-center"
+      data-5000="top:0%;opacity:0.0;"
+      data-5500="opacity:1.0;"
+      data-6500="opacity:1.0;"
+      data-7000="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>ルエリ某ギルドのマスターです。</h1>
+      </div>
+    </section>
+    <section>
+      <h2 class="box" data-5500="top:-20%;left:0%;" data-6000="opacity:1.0;top:20%;left:20%;" data-6500="opacity:1.0;" data-7000="opacity:0.0;">閣下の人！</h2>
+      <h2 class="box" data-5500="top:-20%;left:110%;" data-6000="opacity:1.0;top:15%;left:55%;" data-6500="opacity:1.0;" data-7000="opacity:0.0;">赤いジャイだ</h2>
+      <h2 class="box" data-5500="top:120%;left:120%;" data-6000="opacity:1.0;top:80%;left:20%;" data-6500="opacity:1.0;" data-7000="opacity:0.0;">いっつもフスフスって言う人だ</h2>
+      <h2 class="box" data-5500="top:-10%;left:130%;" data-6000="opacity:1.0;top:25%;left:70%;" data-6500="opacity:1.0;" data-7000="opacity:0.0;">きゃぁああああ</h2>
+      <h2 class="box" data-5500="top:130%;left:120%;" data-6000="opacity:1.0;top:60%;left:60%;" data-6500="opacity:1.0;" data-7000="opacity:0.0;">ふぁっしょんますたー！！</h2>
+    </section>
+    <section class="box text-center"
+      data-7500="top:0%;opacity:0.0;"
+      data-8000="opacity:1.0;"
+      data-8500="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>あなたに私の活躍を是非見てもらいたい</h1>
+      </div>
+    </section>
+    <section class="box text-center"
+      data-9000="top:0%;opacity:0.0;"
+      data-9500="opacity:1.0;"
+      data-10000="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>そう思って語りかけています。</h1>
+      </div>
+    </section>
+    <section class="box text-center"
+      data-10500="top:0%;opacity:0.0;"
+      data-12000="opacity:1.0;"
+      data-12500="top:0%;opacity:0.0;">
+      <div class="vertical-center">
+        <h1>ご覧あれ</h1>
+      </div>
+    </section>
+    <section style="z-index:100" class="box text-center"
+      data-13000="top:0%;opacity:0.0;transform:scale(0.1) rotate(-360deg)"
+      data-13500="top:0%;opacity:1.0;transform:scale(1) rotate(0deg)"
+      data-14000="top:0%;opacity:1.0;">
+      <div class="vertical-center">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/3GMBOT755-0" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+    <section style="z-index:-100" class="box text-center"
+      data-14500="top:15%;opacity:0.0;"
+      data-15000="opacity:1.0;"
+      data-15500="top:15%;opacity:0.0;">
+      <div>
+        <h1>誰だ今ぼっちｗｗｗっていったやつ</h1>
+      </div>
+    </section>
+    <section style="z-index:-100" class="box text-center"
+      data-16000="top:15%;opacity:0.0;"
+      data-16500="opacity:1.0;"
+      data-17000="top:15%;opacity:0.0;">
+      <div>
+        <h1>どうもありがとうございました。</h1>
+      </div>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
     <script src="./js/script.js"></script>
+    <script>
+      var sk = skrollr.init();
+    </script>
+
     <script id="template" type="text/ractive">
       <div class="row">
         <div class="col-xs-6">
