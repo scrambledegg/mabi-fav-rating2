@@ -91,21 +91,20 @@ var FAV_TABLES = {
 
 var CHARACTERS = ["dai", "eyrlys", "elsie", "kaoru"]
 
-function normalize_index(character_name, index) {
+function normalizeIndex(characterName, index) {
   if (index < 0)
-    return FAV_TABLES[character_name].length + index % FAV_TABLES[character_name].length
-  return index % FAV_TABLES[character_name].length
+    return FAV_TABLES[characterName].length + index % FAV_TABLES[characterName].length
+  return index % FAV_TABLES[characterName].length
 }
 
-function get_default_index(name) {
+function getDefaultIndex(name) {
   if (localStorage.getItem(name+"-index"))
     return parseInt(localStorage.getItem(name+"-index"))
   return 0;
 }
 
 $(function(){
-  // initialize_table
-  function create_table(name, index) {
+  function createTable(name, index) {
     var ractive = new Ractive({
       el: "#"+name+"-table",
       template: "#template",
@@ -113,46 +112,46 @@ $(function(){
         character: name,
         index: index,
         table: FAV_TABLES[name],
-        normalize_index: function(num){
-          return normalize_index(this.get().character, num);
+        normalizeIndex: function(num){
+          return normalizeIndex(this.get().character, num);
         },
-        get_fav: function(num) {
-          var idx = normalize_index(this.get().character, num);
+        getFav: function(num) {
+          var idx = normalizeIndex(this.get().character, num);
           return FAV_TABLES[this.get().character][idx]
         },
       }
     });
 
     ractive.on('-3', function(event){
-      var idx = normalize_index(ractive.get().character, ractive.get().index - 3);
+      var idx = normalizeIndex(ractive.get().character, ractive.get().index - 3);
       localStorage.setItem(ractive.get().character+"-index", idx)
       ractive.set('index', idx);
     });
     ractive.on('-1', function(event){
-      var idx = normalize_index(ractive.get().character, ractive.get().index - 1);
+      var idx = normalizeIndex(ractive.get().character, ractive.get().index - 1);
       localStorage.setItem(ractive.get().character+"-index", idx)
       ractive.set('index', idx);
     });
     ractive.on('+1', function(event){
-      var idx = normalize_index(ractive.get().character, ractive.get().index + 1);
+      var idx = normalizeIndex(ractive.get().character, ractive.get().index + 1);
       localStorage.setItem(ractive.get().character+"-index", idx)
       ractive.set('index', idx);
     });
     ractive.on('+3', function(event){
-      var idx = normalize_index(ractive.get().character, ractive.get().index + 3);
+      var idx = normalizeIndex(ractive.get().character, ractive.get().index + 3);
       localStorage.setItem(ractive.get().character+"-index", idx)
       ractive.set('index', idx);
     });
     ractive.on('show-complete-fav-table', function(event){
       var character = ractive.get().character
-      var idx = normalize_index(character, ractive.get().index);
+      var idx = normalizeIndex(character, ractive.get().index);
       ractive.set({'index': idx,
                    'character': character,
                    'table': FAV_TABLES[character]});
     });
   }
   for (var i=0; i < CHARACTERS.length; i++) {
-    create_table(CHARACTERS[i], get_default_index(CHARACTERS[i]));
+    createTable(CHARACTERS[i], getDefaultIndex(CHARACTERS[i]));
   }
 
 

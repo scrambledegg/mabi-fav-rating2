@@ -80,11 +80,11 @@
               </tr>
               {{#[0,1,2]:offset}}
                 <tr>
-                <td>{{normalize_index(index+parseInt(offset))+1}}</td>
+                <td>{{normalizeIndex(index+parseInt(offset))+1}}</td>
               {{#[0,1,2,3,4,5]:tdnum}}
                 <td>
-                  {{#if get_fav(index + offset)[tdnum]  == -1}} <span class="glyphicon glyphicon-remove"></span>
-                  {{elseif get_fav(index + offset)[tdnum] == 1}} <span class="text-danger glyphicon glyphicon-heart"></span>
+                  {{#if getFav(index + offset)[tdnum]  == -1}} <span class="glyphicon glyphicon-remove"></span>
+                  {{elseif getFav(index + offset)[tdnum] == 1}} <span class="text-danger glyphicon glyphicon-heart"></span>
                 {{else}}{{/if}}
                 </td>
               {{/}}
@@ -144,8 +144,8 @@
                   </tr>
                   {{#table:offset}}
                   <tr {{#if 5 <= offset && offset < 8}} class="info"{{/if}}>
-                    <td>{{normalize_index(index+offset - 5)+1}}</td>
-                  {{#table[normalize_index(index+offset - 5)]:tdnum}}
+                    <td>{{normalizeIndex(index+offset - 5)+1}}</td>
+                  {{#table[normalizeIndex(index+offset - 5)]:tdnum}}
                     <td>
                       {{#if .  == -1}} <span class="glyphicon glyphicon-remove"></span>
                       {{elseif . == 1}} <span class="text-danger glyphicon glyphicon-heart"></span>
